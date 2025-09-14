@@ -9,7 +9,7 @@
 // vypise cas ve formatu HH:MM, podle vstupu, 
 // ktery je jen v minutach
 void vypisCas(int casMinuty){
-	printf();
+	printf("%02d:%02d ", casMinuty/60, casMinuty%60);
 }
 
 // resetuje hodnoty v poli na "-1"
@@ -26,13 +26,46 @@ void resetPole(int * pole, int velikost){
 void vypisPole(int * pole, int velikost){
 	for(int i = 0; i < velikost; i++){
 		if(pole[i] != -1){
-			printf("%d ",pole[i]);
+			vypisCas(pole[i]);
 		}
 	}
 }
 
 void generujOdjezdy(int * pole, int velPole, int delkaOkruhu, 
 					int nejdrivejsiOdjezd, int nejpozdejsiOdjezd){
+	int aktualniOdjezd = nejdrivejsiOdjezd;
+	for(int i=0; i<velPole; i++){
+		pole[i] = aktualniOdjezd;
+		aktualniOdjezd += delkaOkruhu;
+		if(aktualniOdjezd > nejpozdejsiOdjezd) break;
+	}
+	
+	return;
+
+}
+
+void inteligentniOdjezdy(int * o_nove, int velPole, int delkaOkruhu, 
+						 int * o_ref, int navaznost){
+	
+	int hodnota = o_ref[0];
+	o_nove[0] = hodnota;
+	int n = 1;
+
+	/* prochazim referencni pole */
+	for(int r = 1; o_ref[r] != -1; r++){
+		hodnota = hodnota + delkaOkruhu;
+		/* A - hodnota je mensi nez o_ref[r] a dalsi spoj se vejde */
+		if(hodnota < o_ref[r] && (hodnota+delkaOkruhu <= o_ref[r]+navaznost)){
+			
+		}
+		/* B - hodnota je mensi nez o_ref[r] a dalsi spoj se nevejde */
+
+		/* C - hodnota je vetsi nez o_ref[r] a dalsi spoj je v toleranci */
+
+		/* D - hodnota je vetsi nez o_ref[r] a dalsi spoj neni v toleranci */
+
+	}
+	
 	return;
 }
 
@@ -55,9 +88,16 @@ int main(int argc, char ** argv){
 
 	// generovani odjezdu pro nejdelsi okruh
 	generujOdjezdy(v2, DELKAPOLE, v2_okruh, nejdrivejsiOdjezd, nejpozdejsiOdjezd);
-	v2[0] = 100;
-	printf("Odjezdy vlaku 2 (Karlstejn): ");
+	printf("Odjezdy vlaku 2 (Karlstejn):  ");
 	vypisPole(v2, DELKAPOLE);
+
+	inteligentniOdjezdy(v1, DELKAPOLE, v1_okruh, v2, navaznost);
+	printf("Odjezdy vlaku 1 (Nizbor):     ");
+	vypisPole(v1, DELKAPOLE);
+
+	inteligentniOdjezdy(v3, DELKAPOLE, v3_okruh, v1, navaznost);
+	printf("Odjezdy vlaku 3 (Cementarna): ");
+	vypisPole(v3, DELKAPOLE);
 
 	return 0;
 }
