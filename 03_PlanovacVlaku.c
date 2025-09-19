@@ -45,7 +45,7 @@ void generujOdjezdy(int * pole, int velPole, int delkaOkruhu,
 }
 
 void inteligentniOdjezdy(int * o_nove, int velPole, int delkaOkruhu, 
-						 int * o_ref, int navaznost){
+						 int * o_ref, int navaznost, int nejpozdejsiOdjezd){
 	
 	int hodnota = o_ref[0];
 	o_nove[0] = hodnota;
@@ -91,11 +91,11 @@ int main(int argc, char ** argv){
 	printf("Odjezdy vlaku 2 (Karlstejn):  ");
 	vypisPole(v2, DELKAPOLE);
 
-	inteligentniOdjezdy(v1, DELKAPOLE, v1_okruh, v2, navaznost);
+	inteligentniOdjezdy(v1, DELKAPOLE, v1_okruh, v2, navaznost, nejpozdejsiOdjezd);
 	printf("Odjezdy vlaku 1 (Nizbor):     ");
 	vypisPole(v1, DELKAPOLE);
 
-	inteligentniOdjezdy(v3, DELKAPOLE, v3_okruh, v1, navaznost);
+	inteligentniOdjezdy(v3, DELKAPOLE, v3_okruh, v1, navaznost, nejpozdejsiOdjezd);
 	printf("Odjezdy vlaku 3 (Cementarna): ");
 	vypisPole(v3, DELKAPOLE);
 
