@@ -29,6 +29,7 @@ void vypisPole(int * pole, int velikost){
 			vypisCas(pole[i]);
 		}
 	}
+	printf("\n");
 }
 
 void generujOdjezdy(int * pole, int velPole, int delkaOkruhu, 
@@ -45,25 +46,48 @@ void generujOdjezdy(int * pole, int velPole, int delkaOkruhu,
 }
 
 void inteligentniOdjezdy(int * o_nove, int velPole, int delkaOkruhu, 
-						 int * o_ref, int navaznost){
+						 int * o_ref, int navaznost, int nejpozdejsiOdjezd){
 	
 	int hodnota = o_ref[0];
 	o_nove[0] = hodnota;
 	int n = 1;
 
 	/* prochazim referencni pole */
-	for(int r = 1; o_ref[r] != -1; r++){
-		hodnota = hodnota + delkaOkruhu;
-		/* A - hodnota je mensi nez o_ref[r] a dalsi spoj se vejde */
-		if(hodnota < o_ref[r] && (hodnota+delkaOkruhu <= o_ref[r]+navaznost)){
+	for(int r = 1; o_ref[r] != -1 || r < velPole; r++){
+		while(1){
+			hodnota = hodnota + delkaOkruhu;
 			
+			//printf("DEBUG: Hodnota: "); vypisCas(hodnota);
+			//printf(" n: %d, r: %d, o_ref[r]: ", n, r); vypisCas(o_ref[r]); printf(", navaznost: %d\n", navaznost);
+			if(hodnota > nejpozdejsiOdjezd) {
+				return;
+			}
+			/* A - hodnota je mensi nez o_ref[r] a dalsi spoj se vejde */
+			if(hodnota < o_ref[r] && (hodnota+delkaOkruhu <= o_ref[r]+navaznost)){
+				o_nove[n] = hodnota; // ukladam hodnotu
+				n++;
+			}
+			/* B - hodnota je mensi nez o_ref[r] a dalsi spoj se nevejde */
+			if(hodnota < o_ref[r] && (hodnota+delkaOkruhu > o_ref[r]+navaznost)){
+				hodnota = o_ref[r];
+				o_nove[n] = hodnota; // ukladam hodnotu
+				n++;
+				break;
+			}
+
+			/* C - hodnota je vetsi nez o_ref[r] a dalsi spoj je v toleranci */
+			if(hodnota >= o_ref[r] && hodnota <= o_ref[r]+navaznost){
+				o_nove[n] = hodnota;
+				n++;
+				break;
+			}
+
+			/* D - hodnota je vetsi nez o_ref[r] a dalsi spoj neni v toleranci */
+			/* ale protoze odstavec B resetuje hodnotu na spravnou, tak se sem nedostanu */
+			if(hodnota > o_ref[r] && hodnota > o_ref[r]+navaznost){
+
+			}
 		}
-		/* B - hodnota je mensi nez o_ref[r] a dalsi spoj se nevejde */
-
-		/* C - hodnota je vetsi nez o_ref[r] a dalsi spoj je v toleranci */
-
-		/* D - hodnota je vetsi nez o_ref[r] a dalsi spoj neni v toleranci */
-
 	}
 	
 	return;
@@ -91,11 +115,11 @@ int main(int argc, char ** argv){
 	printf("Odjezdy vlaku 2 (Karlstejn):  ");
 	vypisPole(v2, DELKAPOLE);
 
-	inteligentniOdjezdy(v1, DELKAPOLE, v1_okruh, v2, navaznost);
+	inteligentniOdjezdy(v1, DELKAPOLE, v1_okruh, v2, navaznost, nejpozdejsiOdjezd);
 	printf("Odjezdy vlaku 1 (Nizbor):     ");
 	vypisPole(v1, DELKAPOLE);
 
-	inteligentniOdjezdy(v3, DELKAPOLE, v3_okruh, v1, navaznost);
+	inteligentniOdjezdy(v3, DELKAPOLE, v3_okruh, v1, navaznost, nejpozdejsiOdjezd);
 	printf("Odjezdy vlaku 3 (Cementarna): ");
 	vypisPole(v3, DELKAPOLE);
 
