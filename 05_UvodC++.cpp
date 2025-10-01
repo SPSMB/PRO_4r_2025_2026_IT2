@@ -1,21 +1,19 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 int main( void ){
 
-	float cislo = 3.9635;
-	float * adr_cislo = & cislo;
-	cout << "Cislo: " << cislo << endl;
-	cout << adr_cislo << endl;
+	auto polomer = 9.168123456848;
+	auto * u_r = &polomer;
+	cout << "u_r: " << u_r << endl;
+	//u_r = sirka;
+	//cout << "u_r: " << u_r << endl;
 
-	float & ref1 = cislo;
-	float & ref2 = cislo;
-
-	ref2 = 5.7;
-
-	cout << "REF1: " << ref1 << endl;
-
+	cout << setbase(10) << 0b1111100 << endl;
+	cout << setw(10) << setfill('.')
+		 << setprecision(3) << polomer << endl;
 
 	return 0;
 }
