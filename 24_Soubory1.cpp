@@ -11,6 +11,7 @@ int main(void){
 	string radek;
 	char z1,z2;
 
+	/*
 	f1 >> s1 >> s2 >> s3;
 	f1.get(z1);
 	f1.get(z2);
@@ -21,6 +22,11 @@ int main(void){
 	cout << "z1: " << z1 << endl;
 	cout << "z2: " << z2 << endl;
 	cout << "radek: " << radek << endl;
+	*/
+	while(f1 >> s1){
+		cout << s1 << " ";
+	}
+	cout << endl;
 
 	f1.close();
 	return 0;

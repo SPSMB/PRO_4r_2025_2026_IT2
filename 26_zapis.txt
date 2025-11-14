@@ -1,0 +1,2 @@
+soubor se jmenuje: '26_zapis.txt'
+cislo: 15
