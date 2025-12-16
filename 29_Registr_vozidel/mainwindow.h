@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <QDialog>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 
@@ -20,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void addItem(QListWidget * listWidget, QString jmeno);
 
 private slots:
     void on_registr_itemClicked(QListWidgetItem *item);
@@ -29,6 +31,10 @@ private slots:
     void on_btn_prejmenovat_clicked();
 
     void on_registr_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_btn_pridat_clicked();
+
+    void on_registr_itemActivated(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;

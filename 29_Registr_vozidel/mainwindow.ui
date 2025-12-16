@@ -47,7 +47,7 @@
      <rect>
       <x>350</x>
       <y>100</y>
-      <width>171</width>
+      <width>261</width>
       <height>41</height>
      </rect>
     </property>
@@ -98,6 +98,52 @@
     </property>
     <property name="text">
      <string>Prejmenovat</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_pridat">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_pridat">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>410</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pridat</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="l_image">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>150</y>
+      <width>381</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
