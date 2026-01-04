@@ -15,10 +15,15 @@ MainWindow::MainWindow(QWidget *parent)
         //ui->registr->addItem(QString::number(i) + ". auto");
     }
 
-    QIcon i2 = QIcon("../../img/car2.png");
-    ui->registr->setIconSize(QSize(60,60));
+    QIcon i2 = QIcon("../../img/superb2.png");
     QListWidgetItem * item1 = new QListWidgetItem(i2, "Skoda Superb");
     ui->registr->addItem(item1);
+
+    QIcon i3 = QIcon("../../img/Favorit.png");
+    QListWidgetItem * item2 = new QListWidgetItem(i3, "Skoda Favorit");
+    ui->registr->addItem(item2);
+
+    ui->registr->setIconSize(QSize(60,60));
 }
 
 MainWindow::~MainWindow()
@@ -73,31 +78,12 @@ void MainWindow::on_btn_prejmenovat_clicked()
 void MainWindow::on_registr_currentItemChanged(QListWidgetItem *current,
                                                QListWidgetItem *previous)
 {
-
-
     if(current != NULL){
-        /*
         ui->l_vyber->setText(current->text());
         int sirka = ui->l_image->width();
         int vyska = ui->l_image->height();
-        //QPixmap pix = current->icon().pixmap(sirka, vyska);
-        //ui->l_image->setPixmap(pix.scaled(sirka, vyska, Qt::KeepAspectRatio));
-        QPixmap pix = current->icon().pixmap(QSize(), QIcon::Normal, QIcon::Off);
-        ui->l_image->setPixmap(
-            pix.scaled(sirka, vyska, Qt::KeepAspectRatio, Qt::SmoothTransformation)
-        );
-        */
-        ui->l_vyber->setText(current->text());
-        int sirka = ui->l_image->width();
-        int vyska = ui->l_image->height();
-
-        // Získat originální pixmapu, ne tu zmenšenou ikonou
-        QPixmap pix = current->icon().pixmap(QSize(), QIcon::Normal, QIcon::Off);
-
-        // Kvalitní škálování s poměrem stran
-        ui->l_image->setPixmap(
-            pix.scaled(sirka, vyska, Qt::KeepAspectRatio, Qt::SmoothTransformation)
-            );
+        QPixmap pix = current->icon().pixmap(sirka, vyska);
+        ui->l_image->setPixmap(pix.scaled(sirka, vyska, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     } else {
         ui->l_vyber->setText("Seznam je prazdny");
     }
@@ -120,9 +106,11 @@ void MainWindow::on_btn_pridat_clicked()
         QMessageBox::critical(this, "Upozorneni",
                               "Zadal jste prazdny text, nic se neprida");
     } else {
-        QString jmenoObrazku = QFileDialog::getOpenFileName(this, "Vyberte obrazek", "C:\\");
-        QIcon i1 = QIcon(jmenoObrazku);
-        QListWidgetItem * novaPolozka = new QListWidgetItem(i1, noveJmeno);
+        QListWidgetItem * novaPolozka = new QListWidgetItem;
+        novaPolozka->setText(noveJmeno);
+        QString jmenoObrazku = QFileDialog::getOpenFileName(this, "Vyberte obrazek", "../../img/");
+        QIcon ico = QIcon(jmenoObrazku);
+        novaPolozka->setIcon(ico);
         ui->registr->insertItem(ui->registr->currentRow(), novaPolozka);
     }
 }
