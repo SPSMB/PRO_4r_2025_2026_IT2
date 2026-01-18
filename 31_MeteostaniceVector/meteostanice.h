@@ -6,22 +6,23 @@
 #include <string>
 #include <sstream>
 #include <limits>
+#include <vector>
 
 using namespace std;
 
 class Meteostanice
 {
 private:
-    int* * m_data; // 2D pole pro vysledky mereni
+    vector< vector<int>> m_data; // 2D pole pro vysledky mereni
     int m_pocStanic; // pocet mericich meteostanic
-    int * m_pmvs; // pocet mereni kazde stanici
+    vector <int> m_pmvs; // pocet mereni kazde stanici
     ifstream m_f; // zdrojovy soubor, kde jsou data
     string m_zdrojovaData; // cesta ke zdrojovym datum
 
     int m_celkovySoucet;
     int m_celkovyPocet;
     float m_celkovyPrumer; // prumer ze vsech stanic
-    float * m_prumeryVeStanicich; // pole s prumery ve stanicich
+    vector <float> m_prumeryVeStanicich; // pole s prumery ve stanicich
     int m_nejchladnejsiStanice; // cislo nejchladnejsi stanice
     int m_nejnizsiTeplota;
 

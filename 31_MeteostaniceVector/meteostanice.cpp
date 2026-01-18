@@ -7,45 +7,39 @@ Meteostanice::Meteostanice() {
     m_zdrojovaData = "../../meteo-data.txt";
     m_pocStanic = pocetRadku();
     cout << "Nacetl jsem " << m_pocStanic << " radku." << endl;
-    m_pmvs = new int[m_pocStanic];
     nactiData();
 
     m_celkovySoucet = 0;
     m_celkovyPocet = 0;
     m_celkovyPrumer = 0; // prumer ze vsech stanic
-    m_prumeryVeStanicich = new float[m_pocStanic]; // pole s prumery ve stanicich
     m_nejchladnejsiStanice = 0; // cislo nejchladnejsi stanice
     m_nejnizsiTeplota = numeric_limits<int>::max(); // nutne includovat <limits>
 }
 
 Meteostanice::~Meteostanice()
 {
-    for(int r = 0; r < m_pocStanic; r++){
-        delete [] m_data[r];
-    }
-    delete [] m_data;
-    delete [] m_prumeryVeStanicich;
 }
 
 void Meteostanice::nactiData()
 {
     m_f.open(m_zdrojovaData); // oteviram soubor s daty
     // alokace 2D pole - 1. vrstva
-    m_data = new int*[m_pocStanic];
     for(int r = 0; r < m_pocStanic; r++){
-        //cout << "Kolik bude mereni v " << r << ". stanici? ";
         string radek;
         getline(m_f, radek);
         int pocet = pocetVysledku(radek);
-        m_pmvs[r] = pocet;
+        m_pmvs.push_back(pocet);
 
         // alokuji r-ty radek
-        m_data[r] = new int[pocet];
+        vector <int> radekDat;
 
         stringstream s2(radek);
-        for(int s = 0; s < pocet; s++){  
-            s2 >> m_data[r][s];
+        for(int s = 0; s < pocet; s++){
+            int tmp;
+            s2 >> tmp;
+            radekDat.push_back(tmp);
         }
+        m_data.push_back(radekDat);
     }
     m_f.close();
 }
@@ -106,7 +100,7 @@ void Meteostanice::pocitejStatistiku()
                 m_nejnizsiTeplota = m_data[r][s];
             }
         }
-        m_prumeryVeStanicich[r] = (float)soucet/m_pmvs[r];
+        m_prumeryVeStanicich.push_back((float)soucet/m_pmvs[r]);
         m_celkovyPocet += m_pmvs[r];
     }
     m_celkovyPrumer = (float)m_celkovySoucet/m_celkovyPocet;
