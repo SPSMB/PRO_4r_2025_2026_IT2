@@ -13,8 +13,10 @@ public:
     ~Linka();
     void vlozStanici(QString jmeno);
     void vypis();
+    void vypis(QString jmeno);
     void odeberVse();
     Stanice * odeberStanici(Stanice * st);
+    Stanice * odeberStanici(QString jmeno);
 };
 
 #endif // LINKA_H

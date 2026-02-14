@@ -46,6 +46,37 @@ void Linka::vypis()
     }
 }
 
+void Linka::vypis(QString jmeno)
+{
+    if(l_posledni == NULL){
+        cout << "Nejsou zadne stanice, seznam je prazdny.\n";
+    } else {
+        int citac = 0;
+        Stanice * aktualniVypis = NULL; // prvni stanice
+        Stanice * startVypis = NULL; //  stanice od ktere zacnu vypisovat
+        // vyhledavani
+        Stanice * tmp = l_posledni->dalsi; // prvni stanice
+        do{
+            if(tmp->jmeno == jmeno){
+                aktualniVypis = tmp;
+                startVypis = tmp;
+                break;
+            }
+            tmp = tmp->dalsi;
+        } while(tmp != l_posledni->dalsi);
+        if(startVypis == NULL){
+            cout << "Zadany nazev stanice v lince neni." << endl;
+            return;
+        }
+        // vypisovani
+        do{
+            citac++;
+            cout << citac << ": " << aktualniVypis->jmeno.toStdString() << endl;
+            aktualniVypis = aktualniVypis->dalsi;
+        }while(aktualniVypis != startVypis);
+    }
+}
+
 void Linka::odeberVse()
 {
     int count = 0;
@@ -82,5 +113,30 @@ Stanice * Linka::odeberStanici(Stanice *st)
              << ".\n";
         delete st;
         return l_posledni;
+    }
+}
+
+Stanice *Linka::odeberStanici(QString jmeno)
+{
+    if(l_posledni == NULL){
+        cout << "Seznam stanic je prazdny, nelze odebirat." << endl;
+        return NULL;
+    }
+    Stanice * nalezeno = NULL; // prvni stanice
+    // vyhledavani
+    Stanice * tmp = l_posledni->dalsi; // prvni stanice
+    do{
+        if(tmp->jmeno == jmeno){
+            nalezeno = tmp;
+            break;
+        }
+        tmp = tmp->dalsi;
+    } while(tmp != l_posledni->dalsi);
+    if(nalezeno == NULL){
+        cout << "Stanice s nazvem " << jmeno.toStdString()
+             << " nebyla nalezena." << endl;
+        return NULL;
+    } else {
+        return odeberStanici(nalezeno);
     }
 }

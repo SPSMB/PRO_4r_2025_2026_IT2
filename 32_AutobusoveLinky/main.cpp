@@ -13,7 +13,7 @@ int main()
     Linka l; // zakladam novou linku
     int volba;
     while(1){
-        cout << "Zadejte pokyn -1: konec, 0: vloz, 1: vypis, 2: smaz\n";
+        cout << "Zadejte pokyn -1: konec, 0: vloz, 1: vypis, 2: smaz 3: vypis od\n";
         cin >> volba;
         // kontrola vstupu
         while(cin.fail()){
@@ -33,7 +33,15 @@ int main()
         } else if(volba == 1){ // vypis stanici
             l.vypis();
         } else if(volba == 2){
-            l.odeberVse();
+            cout << "Zadejte jmeno stanice k odebrani: ";
+            QString jmeno;
+            qtin >> jmeno;
+            l.odeberStanici(jmeno);
+        } else if(volba == 3){
+            cout << "Zadejte jmeno stanice odkud se bude vypisovat: ";
+            QString jmeno;
+            qtin >> jmeno;
+            l.vypis(jmeno);
         }
     }
 
