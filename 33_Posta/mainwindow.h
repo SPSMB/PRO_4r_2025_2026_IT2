@@ -21,6 +21,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_btn_pridej_clicked();
+
 private:
     Ui::MainWindow *ui;
     Fronta * p_fronta;

@@ -20,3 +20,13 @@ MainWindow::~MainWindow()
     delete p_prepazka2;
     delete p_prepazka3;
 }
+
+void MainWindow::on_btn_pridej_clicked()
+{
+    QString jmeno = ui->le_pridej->text();
+    Osoba * os = new Osoba(jmeno);
+    p_fronta->pridej(os);
+    ui->te_fronta->setText(p_fronta->toString());
+    ui->le_pridej->setText("");
+}
+
