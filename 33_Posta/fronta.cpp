@@ -43,11 +43,11 @@ Osoba * Fronta::odeber()
         return NULL;
     } else {
         Osoba * odebrana = f_prvni;
-        f_prvni = f_prvni->dalsi;
         if(f_prvni == f_posledni){
             // kdyz je ve fronte je 1 clovek
             f_posledni = NULL;
         }
+        f_prvni = f_prvni->dalsi;
         return odebrana;
     }
     prvni(); // vypis prvniho
