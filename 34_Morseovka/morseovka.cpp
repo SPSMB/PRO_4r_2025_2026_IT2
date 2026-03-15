@@ -7,34 +7,34 @@ Morseovka::Morseovka() {
 Uzel * Morseovka::vytvorStrom()
 {
     return vytvorUzel(' ',
-                    vytvorUzel('E',                   /* .    */
-                             vytvorUzel('I',                  /* ..   */
-                                      vytvorUzel('S',                 /* ...  */
-                                               vytvorUzel('H',NULL,NULL),     /* .... */
-                                               vytvorUzel('V',NULL,NULL)),    /* ...- */
-                                      vytvorUzel('U',                 /* ..-  */
-                                               vytvorUzel('F',NULL,NULL),     /* ..-. */
-                                               NULL)),
-                             vytvorUzel('A',                  /* .-   */
-                                      vytvorUzel('R',                 /* .-.  */
-                                               vytvorUzel('L',NULL,NULL),     /* .-.. */
-                                               NULL),
-                                      vytvorUzel('W',                 /* .--  */
-                                               vytvorUzel('P',NULL,NULL),     /* .--. */
-                                               vytvorUzel('J',NULL,NULL)))),  /* .--- */
-                    vytvorUzel('T',                   /* -    */
-                             vytvorUzel('N',                  /* -.   */
-                                      vytvorUzel('D',                 /* -..  */
-                                               vytvorUzel('B',NULL,NULL),     /* -... */
-                                               vytvorUzel('X',NULL,NULL)),    /* -..- */
-                                      vytvorUzel('K',                 /* -.-  */
-                                               vytvorUzel('C',NULL,NULL),     /* -.-. */
-                                               vytvorUzel('Y',NULL,NULL))),   /* -.-- */
-                             vytvorUzel('M',                  /* --   */
-                                      vytvorUzel('G',                 /* --.  */
-                                               vytvorUzel('Z',NULL,NULL),     /* --.. */
-                                               vytvorUzel('Q',NULL,NULL)),    /* --.- */
-                                      vytvorUzel('O',NULL,NULL))));   /* ---  */
+            vytvorUzel('E',                   /* .    */
+             vytvorUzel('I',                  /* ..   */
+              vytvorUzel('S',                 /* ...  */
+               vytvorUzel('H',NULL,NULL),     /* .... */
+               vytvorUzel('V',NULL,NULL)),    /* ...- */
+              vytvorUzel('U',                 /* ..-  */
+               vytvorUzel('F',NULL,NULL),     /* ..-. */
+               NULL)),
+             vytvorUzel('A',                  /* .-   */
+              vytvorUzel('R',                 /* .-.  */
+               vytvorUzel('L',NULL,NULL),     /* .-.. */
+              NULL),
+              vytvorUzel('W',                 /* .--  */
+               vytvorUzel('P',NULL,NULL),     /* .--. */
+               vytvorUzel('J',NULL,NULL)))),  /* .--- */
+            vytvorUzel('T',                   /* -    */
+             vytvorUzel('N',                  /* -.   */
+              vytvorUzel('D',                 /* -..  */
+               vytvorUzel('B',NULL,NULL),     /* -... */
+               vytvorUzel('X',NULL,NULL)),    /* -..- */
+              vytvorUzel('K',                 /* -.-  */
+               vytvorUzel('C',NULL,NULL),     /* -.-. */
+               vytvorUzel('Y',NULL,NULL))),   /* -.-- */
+             vytvorUzel('M',                  /* --   */
+              vytvorUzel('G',                 /* --.  */
+               vytvorUzel('Z',NULL,NULL),     /* --.. */
+               vytvorUzel('Q',NULL,NULL)),    /* --.- */
+              vytvorUzel('O',NULL,NULL))));   /* ---  */
 }
 
 Uzel *Morseovka::vytvorUzel(char z, Uzel *t, Uzel *c)
