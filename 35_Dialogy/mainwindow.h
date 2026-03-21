@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QFontDialog>
 #include <QInputDialog>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,6 +27,8 @@ private slots:
     void on_btn_font_clicked();
 
     void on_btn_getItem_clicked();
+
+    void on_btn_saveInfo_clicked();
 
 private:
     Ui::MainWindow *ui;

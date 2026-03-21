@@ -62,6 +62,7 @@ void Morseovka::dekoduj(string &vstup, string &vystup)
         } else {
             while(z == '*' || z == '-'){
                 i++;
+                z = vstup[i];
             }
             vystup.append(1, '?');
             i++;

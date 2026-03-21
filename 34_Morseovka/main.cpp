@@ -13,10 +13,10 @@ int main()
     cout << "Zadej text v morseovce, pro ukonceni zadej 0." << endl;
     cin >> vstup;
     while(true){
-        if(vstup == "0") break;
         if(vstup == ""){
             cin >> vstup;
         }
+        if(vstup == "0") break;
         m.dekoduj(vstup, vystup);
         cout << vystup << endl;
         vstup = vystup = "";

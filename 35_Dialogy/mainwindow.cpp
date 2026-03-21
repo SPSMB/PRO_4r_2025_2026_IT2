@@ -68,3 +68,33 @@ void MainWindow::on_btn_getItem_clicked()
     }
 }
 
+
+void MainWindow::on_btn_saveInfo_clicked()
+{
+    QString folderName = QFileDialog::getExistingDirectory(this,
+                        "Prosim vyberte slozku k pruzkumu", "C:\\");
+    QString reportFile = QFileDialog::getSaveFileName(this,
+                    "Kam se ma ulozit report?", "C:\\Users\\Tom\\Desktop");
+
+    if(folderName == "" || reportFile == ""){
+        QMessageBox::critical(this, "Upozorneni",
+                              "Kdyz neni vybrana slozka nebo soubor pro ulozeni reportu, nic se nestane.");
+        return;
+    }
+
+    QDir directory = QDir(folderName);
+    // vrati obsah slozky
+    QStringList files = directory.entryList();
+
+    QFile f = QFile(reportFile);
+    if(f.open(QIODevice::ReadWrite)){
+        QTextStream s(&f);
+        for(int i = 0; i < files.size(); i++){
+            s << files[i] << '\n';
+        }
+    }
+
+    QString infoMessage = "Report se ulozil do souboru " + reportFile;
+    QMessageBox::information(this, "Potvrzeni", infoMessage);
+}
+
